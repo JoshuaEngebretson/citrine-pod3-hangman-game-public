@@ -22,7 +22,7 @@ function playHangman() {
   while (guessCounter !== 0 && displayedArray.toString() !== wordToGuessArray.toString()) {
     // put some space in between each guess:
     clearSmallerScreen();
-    console.log('Guess this word', displayedArray);
+    console.log('Guess this word:', displayedArray);
 
 
     console.log('Here are the incorrect letters you have guessed so far \n', incorrectLettersArray);
@@ -106,13 +106,12 @@ function clearSmallerScreen() {
 }
 
 
-function clearScreen() {
-  console.log('\n\n\n\n');
-  // console.log('\t\t Game Reset \n \t 👾👾👾👾👾👾👾👾👾👾👾');
-  console.log(`
+function resetScreen() {
+  console.log(`\n\n\n\n
     👾👾👾👾👾👾👾👾👾👾👾
     👾    Game Reset    👾
-    👾👾👾👾👾👾👾👾👾👾👾`)
+    👾👾👾👾👾👾👾👾👾👾👾`
+  );
 }
 
 
@@ -133,7 +132,7 @@ function wantToPlay() {
 
   if (userWantToPlay === 'yes' || userWantToPlay === 'y') {
     console.log(`Let's play Hangman!`);
-    clearScreen();
+    resetScreen();
     playHangman();
   }
   else if (userWantToPlay === 'no'|| userWantToPlay === 'n') {
