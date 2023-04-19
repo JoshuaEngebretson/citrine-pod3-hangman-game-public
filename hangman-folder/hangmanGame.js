@@ -12,13 +12,10 @@ let wordsForGame = [
   'prime', 'harasymiw', 'express',
   'database'
 ];
-//[A,E,T] === [E,A,T]
-//[E,A,T] !== [E,A,T] when objects
-// initializeDisplayedArray();
-// updateDisplayedArray();
-// playHangman();
+
 
 gameReset();
+
 
 function playHangman() {
   //While loop with conditions to end game - inside While loop will be our gameplay
@@ -30,23 +27,26 @@ function playHangman() {
 
     console.log('Here are the incorrect letters you have guessed so far \n', incorrectLettersArray);
     //prompt user for a letter to guess & show them the updated display:
-    currentGuess = prompt('What letter do you guess? --> ');
+    currentGuess = prompt('What letter do you guess? --> ').toLowerCase();
     updateDisplayedArray();
 
     if (wordToGuessArray.includes(currentGuess)) {
-      console.log('CORRECT...dang you smart');
+      console.log('\n\tCORRECT...dang you smart');
     } else {
-      console.log('WRONG TRY AGAIN');
+      console.log('\n\tWRONG TRY AGAIN');
       incorrectLettersArray.push(currentGuess);
       guessCounter--;
     }
-    console.log('Guesses remaining:', guessCounter);
+    console.log('\tGuesses remaining:', guessCounter);
 
   }
 
   if (displayedArray.toString() === wordToGuessArray.toString()) {
     //Win or Lose console logs
-    console.log('Big Winner YAY! The word was -->', wordToGuess);
+    console.log(`
+    Big Winner YAY!
+    You guessed --> [${displayedArray}]
+    The word was --> ${wordToGuess}`);
     gameReset();
     // playHangman();
   }
@@ -60,30 +60,31 @@ function playHangman() {
 }
 
 
-
 function gameReset() {
-  // wordToGuess = 'citrine';
   
   //randomize the new word
   wordToGuess = wordsForGame[randomNum()];
-  console.log('word to guess -->', wordToGuess);
+
   // Adjust the word into an array for means of looping
   wordToGuessArray = wordToGuess.split("");
+
   //Clear out the displayedArray
   displayedArray = [];
+  
   //
   incorrectLettersArray = [];
   guessCounter = 6;
   currentGuess = "";
 
   initializeDisplayedArray();
-  updateDisplayedArray();
+  // updateDisplayedArray();
   wantToPlay();
 
 }
 
 
 function updateDisplayedArray() {
+  // currentGuess = currentGuess.toLowerCase();
   for (let i = 0; i < wordToGuessArray.length; i++) {
     if (currentGuess ===  wordToGuessArray[i]) {
       // add the guess letter to the array
@@ -92,20 +93,28 @@ function updateDisplayedArray() {
   }
 }
 
+
 function initializeDisplayedArray() {
   for (let i = 0; i < wordToGuessArray.length; i++) {
     displayedArray[i]='_';
   }
 }
 
+
 function clearSmallerScreen() {
   console.log('\n\n');
 }
 
+
 function clearScreen() {
   console.log('\n\n\n\n');
-  console.log('\t\t Game Reset \n \t 👾👾👾👾👾👾👾👾👾👾👾');
+  // console.log('\t\t Game Reset \n \t 👾👾👾👾👾👾👾👾👾👾👾');
+  console.log(`
+    👾👾👾👾👾👾👾👾👾👾👾
+    👾    Game Reset    👾
+    👾👾👾👾👾👾👾👾👾👾👾`)
 }
+
 
 function randomNum(){
   let min = 0;
@@ -113,9 +122,6 @@ function randomNum(){
   
   return Math.floor(Math.random() * max); 
 }
-
-
-
 
 
 function wantToPlay() {
@@ -135,5 +141,6 @@ function wantToPlay() {
     clearSmallerScreen();
   } else {
     console.log('Hey... please choose "yes" or "no" \n 😡');
+    wantToPlay();
   }
 }
