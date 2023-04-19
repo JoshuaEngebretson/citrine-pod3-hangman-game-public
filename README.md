@@ -8,7 +8,7 @@ Then save this code file to your computer and open that folder in your terminal.
 Next, you should be able to run "npm install" in your terminal for the necessary dependencies to run the game. 
 
 ## 2. Start the game: 
-In the terminal, enter the following command to start the game: node hangman-folder/hangmanGame.js
+In the terminal, enter the following command to start the game: `npm start`
 
 ## 3. Gameplay:
 Now you can play hangman! Type "yes" into your terminal to proceed with gameplay. You will be prompted to guess a letter for a secret word. 
